@@ -15,15 +15,6 @@ function validateFirebaseConfig() {
   const { apiKey, authDomain, projectId, measurementId, storageBucket, appId } =
     firebaseConfig;
 
-  console.log(
-    apiKey,
-    authDomain,
-    projectId,
-    measurementId,
-    storageBucket,
-    appId
-  );
-
   if (
     !apiKey ||
     !authDomain ||
@@ -46,7 +37,6 @@ export async function initializeFirebase() {
     const app = initializeApp(firebaseConfig);
     messaging = getMessaging(app);
     onMessage(messaging, (payload) => {
-      console.log("Message received in the foreground:", payload);
       displayNotification(payload);
     });
 
@@ -79,7 +69,7 @@ export async function getFirebaseToken(): Promise<string | null> {
     const currentToken = await getToken(messaging, {
       vapidKey: process.env.NEXT_PUBLIC_FIREBASE_VAPID_KEY,
     });
-    console.log('currentToken', currentToken)
+
     if (!currentToken) {
       console.log(
         "No registration token available. Request permission to generate one."
@@ -111,7 +101,8 @@ function displayNotification(payload: any) {
     notification.onclick = () => {
       window.focus();
       notification.close();
-      // Handle notification click (e.g., navigate to a specific page)
+
+      window.location.href = "/";
       if (payload.data?.url) {
         window.location.href = payload.data.url;
       }

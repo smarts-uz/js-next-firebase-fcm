@@ -1,5 +1,8 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { getMessaging } from "firebase-admin/messaging";
+import { initializeFirebaseAdmin } from "@/lib/firebase-admin";
+
+initializeFirebaseAdmin();
 
 export async function POST(request: NextRequest) {
   try {
@@ -8,7 +11,7 @@ export async function POST(request: NextRequest) {
     if (!topic) {
       return NextResponse.json(
         { success: false, message: "Topic is required" },
-        { status: 400 },
+        { status: 400 }
       );
     }
 
@@ -38,7 +41,7 @@ export async function POST(request: NextRequest) {
             ? error.message
             : "An error occurred sending notification to topic",
       },
-      { status: 500 },
+      { status: 500 }
     );
   }
 }
