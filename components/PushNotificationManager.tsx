@@ -36,11 +36,11 @@ export default function PushNotificationManager() {
 
         if (currentPermission === "granted") {
           const fcmToken = await getFirebaseToken();
-          console.log('client-Token',fcmToken)
+          console.log("client-Token", fcmToken);
           setToken(fcmToken);
         }
       } catch (error) {
-        console.log(error)
+        console.log(error);
         console.error("Error initializing notifications:", error);
         setError("Failed to initialize notifications. Please try again.");
       }
@@ -49,8 +49,6 @@ export default function PushNotificationManager() {
     initializeNotifications();
   }, []);
 
-// fKyAJhTos0o4nO2OJE0xEk:APA91bE9KiofkH01MbATZArunUc7fkmm791FEpN3m7nMMiB1Fan6FOP-qPWG0G4z8d69IbZsofXSFoSqn-5DpweY8g0F1lAEaoxuZVTUwYFpXgjvp1g4kv0
-// fKyAJhTos0o4nO2OJE0xEk:APA91bE9KiofkH01MbATZArunUc7fkmm791FEpN3m7nMMiB1Fan6FOP-qPWG0G4z8d69IbZsofXSFoSqn-5DpweY8g0F1lAEaoxuZVTUwYFpXgjvp1g4kv0
   const handleRequestPermission = async () => {
     setLoading(true);
     setError(null);
@@ -66,7 +64,7 @@ export default function PushNotificationManager() {
         setSuccess("Notification permission granted!");
       } else {
         setError(
-          "Permission denied. Please enable notifications in your browser settings.",
+          "Permission denied. Please enable notifications in your browser settings."
         );
       }
     } catch (error) {

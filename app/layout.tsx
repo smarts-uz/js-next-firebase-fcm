@@ -3,24 +3,14 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
-import PWASetup from "@/components/PWASetup";
-import { PWANavigation } from "@/components/PWANavigation";
 import { LayoutWrapper } from "./layout-wrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Smarts Next.js PWA",
-  description: "A comprehensive PWA built with Next.js",
+  title: "Firebase FCM Example",
+  description: "A comprehensive guide to Firebase Cloud Messaging with Next.js",
   manifest: "/manifest.json",
-  appleWebApp: {
-    capable: true,
-    statusBarStyle: "default",
-    title: "Smarts PWA",
-  },
-  formatDetection: {
-    telephone: false,
-  },
 };
 
 export const viewport: Viewport = {
@@ -45,7 +35,6 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <PWASetup />
           <LayoutWrapper>{children}</LayoutWrapper>
         </ThemeProvider>
       </body>

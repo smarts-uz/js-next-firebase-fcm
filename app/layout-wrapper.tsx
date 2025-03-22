@@ -1,5 +1,5 @@
 import type React from "react";
-import { PWANavigation } from "@/components/PWANavigation";
+import { Navigation } from "@/components/Navigation";
 import Link from "next/link";
 
 interface LayoutWrapperProps {
@@ -9,11 +9,11 @@ interface LayoutWrapperProps {
 export function LayoutWrapper({ children }: LayoutWrapperProps) {
   return (
     <div className="min-h-screen flex flex-col">
-      <PWANavigation />
+      <Navigation />
       <main className="container mx-auto p-4 max-w-4xl flex-1">{children}</main>
       <footer className="border-t py-4 text-center text-sm text-muted-foreground">
         <p>
-          Next.js PWA Example created by{" "}
+          Next.js Firebase FCM Example created by{" "}
           <Link
             className="text-red-400 underline"
             href="https://github.com/Ramz001"
