@@ -37,6 +37,7 @@ export async function initializeFirebase() {
     const app = initializeApp(firebaseConfig);
     messaging = getMessaging(app);
     onMessage(messaging, (payload) => {
+      console.log("message", payload);
       displayNotification(payload);
     });
 
@@ -97,7 +98,7 @@ function displayNotification(payload: any) {
       notificationTitle,
       notificationOptions
     );
-
+  
     notification.onclick = () => {
       window.focus();
       notification.close();

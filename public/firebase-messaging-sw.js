@@ -21,25 +21,17 @@ firebase.initializeApp(firebaseConfig);
 // Retrieve an instance of Firebase Messaging so that it can handle background messages.
 const messaging = firebase.messaging();
 
-// // Optional: Add event listener for 'push' events
-// self.addEventListener("push", function (event) {
-//   if (event.data) {
-//     const notificationData = event.data.json();
-//     const notificationTitle = notificationData.notification.title;
-//     const notificationOptions = {
-//       body: notificationData.notification.body + "hello",
-//       icon: notificationData.notification.icon,
-//     };
-
-//     return self.registration.showNotification(
-//       notificationTitle,
-//       notificationOptions
-//     );
-//   }
-// });
-
-// // Optional: Add event listener for 'notificationclick' events
-// self.addEventListener("notificationclick", function (event) {
-//   event.notification.close();
-//   // Add logic for handling notification clicks
-// });
+messaging.onBackgroundMessage((payload) => {
+  console.log(
+    "[firebase-messaging-sw.js] Received background message ",
+    payload
+  );
+  // Customize notification here
+  const notificationTitle = "Background Message Title";
+  const notificationOptions = {
+    title: payload?.notification?.title,
+    body: payload?.notification.body,
+    icon: "/firebase.png",
+  };
+  self.registration.showNotification(notificationTitle, notificationOptions);
+});
